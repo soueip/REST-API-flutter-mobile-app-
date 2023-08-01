@@ -1,50 +1,74 @@
+import 'package:firstapp/ui/provider/counterpro.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CounterPage extends StatefulWidget {
-  @override
-  State<CounterPage> createState() => _CounterPageState();
-}
-
-class _CounterPageState extends State<CounterPage> {
-  int counter = 0;
-
+class CounterProviderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    CounterState cntstate = Provider.of<CounterState>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Counter Page'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Counter value: $counter',
-              style: TextStyle(fontSize: 22, color: Colors.amber),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  ++counter;
-                });
-              },
-              child: Text('Increment'),
-            ),
-            SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  --counter;
-                });
-                if (counter == 0) {
-                  _showSnackBar(context,
-                      'Counter reached zero!'); // Display a snackbar when the counter reaches zero
-                }
-              },
-              child: Text('Decrement'),
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade200, Colors.blue.shade400],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Consumer<CounterState>(
+                builder: (context, cntrstat, child) {
+                  return Text(
+                    'Counter value: ${cntrstat.counter}',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  );
+                },
+              ),
+              SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      cntstate.increment();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    child: Text('Increment',
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ),
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      cntstate.decrement();
+                      if (cntstate.counter == 0) {
+                        _showSnackBar(context, 'Counter reached 0');
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    child: Text('Decrement',
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -53,7 +77,10 @@ class _CounterPageState extends State<CounterPage> {
   void _showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(
+          message,
+          style: TextStyle(fontSize: 16),
+        ),
         duration: Duration(seconds: 2), // Display the snackbar for 2 seconds
       ),
     );
