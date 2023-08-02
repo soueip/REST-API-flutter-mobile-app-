@@ -1,14 +1,13 @@
-import 'package:firstapp/ui/provider/counterpro.dart';
+import 'package:firstapp/ui/block/cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterProviderPage extends StatelessWidget {
+class CountercubitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    CounterState cntstate = Provider.of<CounterState>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter Page'),
+        title: Text('cubit Page'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -22,14 +21,15 @@ class CounterProviderPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Consumer<CounterState>(
-                builder: (context, cntrstat, child) {
+              BlocBuilder<CounterCubit, int>(
+                builder: (context, state) {
                   return Text(
-                    'Counter value: ${cntrstat.counter}',
+                    'Counter value: $state', // Display the counter value from the state
                     style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   );
                 },
               ),
@@ -39,31 +39,41 @@ class CounterProviderPage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      cntstate.increment();
+                      // Increment the counter
+                      context.read<CounterCubit>().increment();
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                    child: Text('Increment',
-                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                    child: Text(
+                      'Increment',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                   SizedBox(width: 16),
                   ElevatedButton(
                     onPressed: () {
-                      cntstate.decrement();
-                      if (cntstate.counter == 0) {
+                      // Decrement the counter
+                      context.read<CounterCubit>().decrement();
+
+                      // Show snackbar if the counter reaches 0
+                      if (context.read<CounterCubit>().state == 0) {
                         _showSnackBar(context, 'Counter reached 0');
                       }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                    child: Text('Decrement',
-                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                    child: Text(
+                      'Decrement',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                 ],
               ),

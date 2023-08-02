@@ -8,7 +8,7 @@ class GlobalParams {
       "route": "/home"
     },
     {
-      "title": "Counter",
+      "title": "Provider state",
       "icon": Icon(
         Icons.add,
         color: Colors.amber,
@@ -16,15 +16,23 @@ class GlobalParams {
       "route": "/counter"
     },
     {
-      "title": "Meteo",
+      "title": "cubit state",
       "icon": Icon(
-        Icons.camera,
+        Icons.add,
         color: Colors.amber,
       ),
-      "route": "/meteo"
+      "route": "/counter cubit"
     },
     {
-      "title": "profile",
+      "title": "bloc  state",
+      "icon": Icon(
+        Icons.add,
+        color: Colors.amber,
+      ),
+      "route": "/counter bloc"
+    },
+    {
+      "title": "Rest Api",
       "icon": Icon(
         Icons.person,
         color: Colors.amber,

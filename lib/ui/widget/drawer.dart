@@ -7,38 +7,73 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                Colors.blue,
-                Colors.white,
-              ]),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+            color: Colors.blue,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage:
+                      AssetImage('assets/images/profile_picture.jpeg'),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Souei Mohamed',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'soueimed1@gmail.com',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
-            child: Center(
-              child: CircleAvatar(
-                radius: 50,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: GlobalParams.menus.length,
+              itemBuilder: (context, index) {
+                final menuItem = GlobalParams.menus[index];
+                return ListTile(
+                  title: Text(
+                    menuItem['title'],
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  leading: menuItem['icon'],
+                  trailing: Icon(
+                    Icons.arrow_right,
+                    color: Colors.amber,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, menuItem['route']);
+                  },
+                );
+              },
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            color: Colors.blue,
+            child: Text(
+              'Version 1.0.0',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
               ),
             ),
           ),
-          ...(GlobalParams.menus as List).map((e) {
-            return ListTile(
-              title: Text(
-                '${e['title']}',
-                style: TextStyle(fontSize: 22),
-              ),
-              leading: e['icon'],
-              trailing: Icon(
-                Icons.arrow_right,
-                color: Colors.amber,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.pushNamed(context, "${e['route']}");
-              },
-            );
-          })
         ],
       ),
     );

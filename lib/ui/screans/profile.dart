@@ -3,12 +3,12 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:firstapp/ui/widget/usercard.dart';
 
-class Profile extends StatefulWidget {
+class Restapi extends StatefulWidget {
   @override
-  State<Profile> createState() => _ProfileState();
+  State<Restapi> createState() => _Restapi();
 }
 
-class _ProfileState extends State<Profile> {
+class _Restapi extends State<Restapi> {
   String query = "";
   bool visible = false;
   TextEditingController queryTextEditingController =
