@@ -24,36 +24,20 @@ class PortfolioProjectCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-                child: Image.asset(
-                  projectImage,
-                  height: 150,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Text(
-                    'New',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Center(
+              child: FractionallySizedBox(
+                widthFactor: 0.8, // Adjust this value to control the image size
+                child: ClipRRect(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+                  child: Image.asset(
+                    projectImage,
+                    height: 100, // You can adjust the height here
                   ),
                 ),
               ),
-            ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(12),
@@ -92,12 +76,13 @@ class PortfolioProjectCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         side: BorderSide(
-                            color: Colors.purpleAccent), // Border color
+                          color: Color(0xFF33CCCC),
+                        ), // Border color
                       ),
                       child: Text(
                         'View Project',
                         style: TextStyle(
-                          color: Color(0xFF755EE8),
+                          color: Color(0xFF33CCCC),
                         ),
                       ),
                     ),

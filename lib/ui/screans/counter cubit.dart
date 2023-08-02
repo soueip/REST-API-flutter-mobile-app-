@@ -12,7 +12,10 @@ class CountercubitPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue.shade200, Colors.blue.shade400],
+            colors: [
+              Color(0xFF3366FF), // Royal Blue
+              Color(0xFF33CCCC), // Turquoise
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

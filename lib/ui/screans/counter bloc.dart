@@ -13,7 +13,10 @@ class CounterblocPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue.shade200, Colors.blue.shade400],
+            colors: [
+              Color(0xFF3366FF), // Royal Blue
+              Color(0xFF33CCCC), // Turquoise
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -61,7 +64,7 @@ class CounterblocPage extends StatelessWidget {
                       context.read<ContrBloc>().add(Contrevent.decrement);
 
                       // Show snackbar if the counter reaches 0
-                      if (context.read<CounterCubit>().state == 0) {
+                      if (context.read<ContrBloc>().state == 0) {
                         _showSnackBar(context, 'Counter reached 0');
                       }
                     },

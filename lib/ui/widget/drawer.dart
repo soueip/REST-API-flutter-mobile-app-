@@ -12,14 +12,13 @@ class MyDrawer extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-            color: Colors.blue,
+            color: Color(0xFF3366FF),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage:
-                      AssetImage('assets/images/profile_picture.jpeg'),
+                  backgroundImage: AssetImage('assets/profile_picture.jpeg'),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -53,7 +52,7 @@ class MyDrawer extends StatelessWidget {
                   leading: menuItem['icon'],
                   trailing: Icon(
                     Icons.arrow_right,
-                    color: Colors.amber,
+                    color: Color(0xFF33CCCC),
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -65,7 +64,7 @@ class MyDrawer extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            color: Colors.blue,
+            color: Color(0xFF3366FF),
             child: Text(
               'Version 1.0.0',
               style: TextStyle(

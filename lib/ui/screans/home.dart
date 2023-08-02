@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Portfolio'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF3366FF),
       ),
       drawer: MyDrawer(),
       body: SingleChildScrollView(
@@ -21,10 +21,8 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF755EE8),
-                    Color(0xFF846AFF),
-                    Colors.purpleAccent,
-                    Colors.amber,
+                    Color(0xFF3366FF), // Royal Blue
+                    Color(0xFF33CCCC), // Turquoise
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -37,8 +35,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundImage:
-                        AssetImage('assets/images/profile_picture.jpeg'),
+                    backgroundImage: AssetImage('assets/profile_picture.jpeg'),
                   ),
                   SizedBox(height: 16),
                   Text(
@@ -126,7 +123,14 @@ class HomePage extends StatelessWidget {
                   // Handle the case if the email couldn't be launched
                 }
               },
-              // Remaining properties of the button...
+              // Set the button background color to Royal Blue
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF3366FF), // Royal Blue
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               child: Text(
                 'Get in Touch',
                 style: TextStyle(color: Colors.white),

@@ -4,14 +4,14 @@ class GlobalParams {
   static List<Map<String, dynamic>> menus = [
     {
       "title": "home",
-      "icon": Icon(Icons.home, color: Colors.amber),
+      "icon": Icon(Icons.home, color: Color(0xFF33CCCC)),
       "route": "/home"
     },
     {
       "title": "Provider state",
       "icon": Icon(
         Icons.add,
-        color: Colors.amber,
+        color: Color(0xFF33CCCC),
       ),
       "route": "/counter"
     },
@@ -19,7 +19,7 @@ class GlobalParams {
       "title": "cubit state",
       "icon": Icon(
         Icons.add,
-        color: Colors.amber,
+        color: Color(0xFF33CCCC),
       ),
       "route": "/counter cubit"
     },
@@ -27,7 +27,7 @@ class GlobalParams {
       "title": "bloc  state",
       "icon": Icon(
         Icons.add,
-        color: Colors.amber,
+        color: Color(0xFF33CCCC),
       ),
       "route": "/counter bloc"
     },
@@ -35,7 +35,7 @@ class GlobalParams {
       "title": "Rest Api",
       "icon": Icon(
         Icons.person,
-        color: Colors.amber,
+        color: Color(0xFF33CCCC),
       ),
       "route": "/profile"
     },
